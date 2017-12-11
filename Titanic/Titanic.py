@@ -32,7 +32,12 @@ if __name__ == "__main__":
 
     #STEP 2: Model Building
     lr.fit(x, y.ravel())
+
+    # predict是强分类器，对于每个样本，它要么输出0，要么输出1
     y_hat = lr.predict(x)
+
+    # predict_proba是弱分类器返回的概率。它不像强分类器只给出0或者1.
+    # 它给出的概率是 为0的概率0.43348191，1的概率为0.56651809.
     y_hat_prob = lr.predict_proba(x)
     np.set_printoptions(suppress=True)
 
