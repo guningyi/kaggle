@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
         # STEP 1 : Data Cleaning && Data Preparing
 
-        # pclass Age sibsp parch
+        # pclass Sex Age sibsp parch
         x = pd.read_csv(path, header=None, usecols=[2,4,5,6,7])
         # survived
         y = pd.read_csv(path, header=None, usecols=[1])
@@ -48,8 +48,10 @@ if __name__ == '__main__':
         #print u'准确度：%.2f%%' % (100 * np.mean(y_hat == y.ravel()))
 
 
-        #Prepare the Test data
-        test_x = pd.read_csv(test_path, header=None, usecols=[2,4,5,6,7])
+        # Prepare the Test data
+        # pclass sex age sibsp parch
+        test_x = pd.read_csv(test_path, header=None, usecols=[1,3,4,5,6])
+
         for i, type in enumerate(sex):
             test_x.set_value(test_x[4] == type, 4, i)
 
