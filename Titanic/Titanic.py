@@ -51,7 +51,7 @@ if __name__ == '__main__':
         # Prepare the Test data
         # pclass sex age sibsp parch
         test_x = pd.read_csv(test_path, header=None, usecols=[1,3,4,5,6])
-
+        passengerId = pd.read_csv(test_path, header=None, usecols=[0])
         for i, type in enumerate(sex):
             test_x.set_value(test_x[4] == type, 4, i)
 
@@ -63,6 +63,11 @@ if __name__ == '__main__':
 
         print 'test_y_hat = \n', test_y_hat
 
-        df = pd.DataFrame(test_y_hat)
+        data = {'PassengerId': [passengerId],
+                'Survived': [test_y_hat]}
+
+        df = pd.DataFrame(data)
+
+
         df.to_csv('Titanic.csv', float_format='%d',na_rep="NAN!")
 
